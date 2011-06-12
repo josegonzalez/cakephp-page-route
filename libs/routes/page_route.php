@@ -75,6 +75,10 @@ class PageRoute extends CakeRoute {
 			App::import('Core', 'Sanitize');
 		}
 
+		if (!class_exists('ConnectionManager')) {
+			App::import('Model', 'ConnectionManager');
+		}
+
 		$params['pass'] = Sanitize::clean(explode('/', $path));
 		$params['controller'] = $this->options['controller'];
 		$params['action'] = $this->options['action'];

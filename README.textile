@@ -57,7 +57,7 @@ Router::connect('/:page', array('controller' => 'static_pages', 'action' => 'ind
 
 In this way, we can easily rename the @PagesController@ to something less useful, and reuse the @PagesController@ for something else - such as dynamic content from the database.
 
-Reverse routing will all work the same as it does without this route class. @array('controller' => 'pages', 'action' => 'display', 'about')@ will be automatically converted to @array('controller' => 'pages', 'action' => 'display', 'page' =. 'about')@ for backwards compatibility Please note that by default, the regex @[\/\w_-]+@ is used to check the page validity, so you may need to update that regex in the Route options as follows:
+Reverse routing will all work the same as it does without this route class. @array('controller' => 'pages', 'action' => 'display', 'about')@ will be automatically converted to @array('controller' => 'pages', 'action' => 'display', 'page' => 'about')@ for backwards compatibility Please note that by default, the regex @[\/\w_-]+@ is used to check the page validity, so you may need to update that regex in the Route options as follows:
 
 <pre><code>App::import('Lib', 'PageRoute.PageRoute');
 Router::connect('/:page', array('controller' => 'static_pages', 'action' => 'index'),

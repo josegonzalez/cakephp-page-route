@@ -4,10 +4,10 @@
  * Enables you to add new pages without having to manually specify a shortcut
  * route in your routes.php file
  *
- * To use, drop this into app/libs/routes/page_route.php and add
+ * To use, install the page_route plugin and add
  * the following to the top of app/config/routes.php:
  *
- * App::import('Lib', 'routes/PageRoute');
+ * App::import('Lib', 'PageRoute.PageRoute');
  *
  * To trigger it, specify the routeClass in the route's options array, along
  * with the regex to allow subpages to be parsed:

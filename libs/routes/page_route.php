@@ -47,9 +47,9 @@ class PageRoute extends CakeRoute {
  * @return void
  * @access public
  */
-	function PageRoute($template, $defaults = array(), $options = array()) {
+	function __construct($template, $defaults = array(), $options = array()) {
 		$this->template = $template;
-		$this->defaults = (array)$defaults;
+		$this->defaults = (array) $defaults;
 		$this->options = array_merge($this->options, (array) $options);
 	}
 

@@ -1,4 +1,7 @@
 <?php
+App::uses('Sanitize', 'Utility');
+App::uses('ConnectionManager', 'Model');
+
 /**
  * Custom Route class auto-enables /:page routes
  * Enables you to add new pages without having to manually specify a shortcut
@@ -45,12 +48,10 @@ class PageRoute extends CakeRoute {
  * @param array $defaults Array of defaults for the route.
  * @param string $params Array of parameters and additional options for the Route
  * @return void
- * @access public
  */
-	function PageRoute($template, $defaults = array(), $options = array()) {
-		$this->template = $template;
-		$this->defaults = (array)$defaults;
-		$this->options = array_merge($this->options, (array) $options);
+	public function __construct($template, $defaults = array(), $options = array()) {
+		$options = array_merge($this->options, (array) $options);
+		parent::__construct($template, $defaults, $options);
 	}
 
 /**
@@ -67,16 +68,8 @@ class PageRoute extends CakeRoute {
 		}
 
 		$path = trim(str_replace('//', '', (string) $params['page']), '/');
-		if (!file_exists(VIEWS . $this->options['controller'] . DS . $path . '.ctp')) {
+		if (!file_exists(APP . 'View' . DS . $this->options['controller'] . DS . $path . '.ctp')) {
 			return false;
-		}
-
-		if (!class_exists('Sanitize')) {
-			App::import('Core', 'Sanitize');
-		}
-
-		if (!class_exists('ConnectionManager')) {
-			App::import('Model', 'ConnectionManager');
 		}
 
 		$params['pass'] = Sanitize::clean(explode('/', $path));
@@ -114,7 +107,7 @@ class PageRoute extends CakeRoute {
 
 		if (isset($url['validate']) && $url['validate'] == true) {
 			$path = trim(str_replace('//', '', (string) $url['page']), '/');
-			if (!file_exists(VIEWS . $this->options['controller'] . DS . $path . '.ctp')) {
+			if (!file_exists(APP . 'View' . DS . $this->options['controller'] . DS . $path . '.ctp')) {
 				return false;
 			}
 		}

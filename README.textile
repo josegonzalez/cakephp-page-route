@@ -4,7 +4,7 @@ Forget about cluttering your @routes.php@ with zillions of @/page@-style routes.
 
 h2. Background
 
-Someone in IRC was migrating tons of static pages into a fresh CakePHP install. In the webroot. I was going to hurt him, but then told him to move them into @app/views/pages@ and use routes to properly route everything. I also mentioned that rather than routing every static file one by one, it might be possible using a custom @CakeRoute@ class, but didn't elaborate.
+Someone in IRC was migrating tons of static pages into a fresh CakePHP install. In the webroot. I was going to hurt him, but then told him to move them into @app/View/pages@ and use routes to properly route everything. I also mentioned that rather than routing every static file one by one, it might be possible using a custom @CakeRoute@ class, but didn't elaborate.
 
 So a few minutes of hacking later, and here I am with this lovely @PageRoute@.
 
@@ -37,9 +37,9 @@ In your plugin directory type
 
 h2. Usage
 
-Way near the bottom of your @routes.php@ file, add the following:
+Way near the bottom of your @app/Config/routes.php@ file, add the following:
 
-<pre><code>App::import('Lib', 'PageRoute.PageRoute');
+<pre><code>App::uses('PageRoute', 'PageRoute.Routing/Route');
 Router::connect('/:page', array('controller' => 'pages', 'action' => 'display'),
 	array('routeClass' => 'PageRoute')
 );
@@ -49,7 +49,7 @@ And now you can remove all shortcuts to your @/pages/display/page-name@ urls. Wh
 
 It is also possible to customize the controller/action used for this. For example, we might want to use the @StaticPagesController::index()@ instead of @PagesController::display()@. In that case, our @routes.php@ would look like the following:
 
-<pre><code>App::import('Lib', 'PageRoute.PageRoute');
+<pre><code>App::uses('PageRoute', 'PageRoute.Routing/Route');
 Router::connect('/:page', array('controller' => 'static_pages', 'action' => 'index'),
 	array('routeClass' => 'PageRoute', 'controller' => 'static_pages', 'action' => 'index')
 );
@@ -59,7 +59,7 @@ In this way, we can easily rename the @PagesController@ to something less useful
 
 Reverse routing will all work the same as it does without this route class. @array('controller' => 'pages', 'action' => 'display', 'about')@ will be automatically converted to @array('controller' => 'pages', 'action' => 'display', 'page' =. 'about')@ for backwards compatibility Please note that by default, the regex @[\/\w_-]+@ is used to check the page validity, so you may need to update that regex in the Route options as follows:
 
-<pre><code>App::import('Lib', 'PageRoute.PageRoute');
+<pre><code>App::uses('PageRoute', 'PageRoute.Routing/Route');
 Router::connect('/:page', array('controller' => 'static_pages', 'action' => 'index'),
 	array('routeClass' => 'PageRoute', 'page' => '[a-zA-Z]+')
 );

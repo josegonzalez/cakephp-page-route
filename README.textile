@@ -11,29 +11,31 @@ So a few minutes of hacking later, and here I am with this lovely @PageRoute@.
 h2. Requirements
 
 * PHP 5.2+
-* CakePHP 1.3
+* CakePHP 2.x
 
 h2. Installation
 
 _[Manual]_
 
-# Download this: http://github.com/josegonzalez/page_route/zipball/master
+# Download this: http://github.com/josegonzalez/page_route/zipball/2.0
 # Unzip that download.
-# Copy the resulting folder to app/plugins
-# Rename the folder you just copied to @page_route@
+# Copy the resulting folder to app/Plugin
+# Rename the folder you just copied to @PageRoute@
 
 _[GIT Submodule]_
 
 In your app directory type:
-<pre><code>git submodule add git://github.com/josegonzalez/page_route.git plugins/page_route
+<pre><code>git submodule add git://github.com/josegonzalez/page_route.git Plugin/PageRoute
 git submodule init
 git submodule update
+cd Plugin/PageRoute
+git checkout -t origin/2.0
 </code></pre>
 
 _[GIT Clone]_
 
 In your plugin directory type
-<pre><code>git clone git://github.com/josegonzalez/page_route.git page_route</code></pre>
+<pre><code>git clone --branch=2.0 git://github.com/josegonzalez/page_route.git PageRoute</code></pre>
 
 h2. Usage
 

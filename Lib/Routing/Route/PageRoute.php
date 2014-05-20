@@ -35,7 +35,7 @@ class PageRoute extends CakeRoute {
  * @var array
  * @access public
  */
-	var $options = array(
+	public $options = array(
 		'controller' => 'pages',
 		'action' => 'display',
 		'page' => '[\/\w_-]+',
@@ -50,7 +50,7 @@ class PageRoute extends CakeRoute {
  * @return void
  */
 	public function __construct($template, $defaults = array(), $options = array()) {
-		$options = array_merge($this->options, (array) $options);
+		$options = array_merge($this->options, (array)$options);
 		parent::__construct($template, $defaults, $options);
 	}
 
@@ -61,13 +61,13 @@ class PageRoute extends CakeRoute {
  * @param string $url The url to parse
  * @return mixed false on failure, or an array of request parameters
  */
-	function parse($url) {
+	public function parse($url) {
 		$params = parent::parse($url);
 		if (!$params || empty($params['page'])) {
 			return false;
 		}
 
-		$path = trim(str_replace('//', '', (string) $params['page']), '/');
+		$path = trim(str_replace('//', '', (string)$params['page']), '/');
 		if (!file_exists(APP . 'View' . DS . $this->options['controller'] . DS . $path . '.ctp')) {
 			return false;
 		}
@@ -88,7 +88,7 @@ class PageRoute extends CakeRoute {
  * @param array $url Array of parameters to convert to a string.
  * @return mixed either false or a string url.
  */
-	function match($url) {
+	public function match($url) {
 		if (!isset($url['controller']) || !isset($url['action'])) {
 			return false;
 		}
@@ -106,7 +106,7 @@ class PageRoute extends CakeRoute {
 		}
 
 		if (isset($url['validate']) && $url['validate'] == true) {
-			$path = trim(str_replace('//', '', (string) $url['page']), '/');
+			$path = trim(str_replace('//', '', (string)$url['page']), '/');
 			if (!file_exists(APP . 'View' . DS . $this->options['controller'] . DS . $path . '.ctp')) {
 				return false;
 			}

@@ -1,0 +1,31 @@
+{
+	"name": "josegonzalez/cakephp-page-route",
+	"description": "Automagically route /:page style routes without any fuss in CakePHP",
+	"type": "cakephp-plugin",
+	"keywords": [
+		"cakephp",
+		"page",
+		"static"
+	],
+	"homepage": "http://github.com/josegonzalez/cakephp-page-route",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Jose Diaz-Gonzalez",
+			"email": "email@josediazgonzalez.com",
+			"homepage": "http://josediazgonzalez.com",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"composer/installers": "*"
+	},
+	"support": {
+		"email": "cakephp+page-route@josediazgonzalez.com",
+		"issues": "https://github.com/josegonzalez/cakephp-page-route/issues",
+		"source": "https://github.com/josegonzalez/cakephp-page-route"
+	},
+	"extra": {
+		"installer-name": "PageRoute"
+	}
+}

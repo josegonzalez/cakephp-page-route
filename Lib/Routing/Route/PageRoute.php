@@ -68,8 +68,9 @@ class PageRoute extends CakeRoute {
 		}
 
 		$path = trim(str_replace('//', '', (string)$params['page']), '/');
-		if (!file_exists(APP . 'View' . DS . $this->options['controller'] . DS . $path . '.ctp')) {
-			return false;
+		$viewPath = APP . 'View' . DS . $this->options['controller'] . DS . $path . '.ctp';
+		if (!file_exists($viewPath)) {
+			throw new MissingViewException($viewPath);
 		}
 
 		$params['pass'] = Sanitize::clean(explode('/', $path));

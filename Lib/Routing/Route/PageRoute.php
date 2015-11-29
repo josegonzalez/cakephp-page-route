@@ -60,6 +60,7 @@ class PageRoute extends CakeRoute {
  *
  * @param string $url The url to parse
  * @return mixed false on failure, or an array of request parameters
+ * @throws MissingViewException if a viewpath is missing
  */
 	public function parse($url) {
 		$params = parent::parse($url);
